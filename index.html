@@ -1,0 +1,138 @@
+<!DOCTYPE HTML>
+<!--
+	Stellar by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Estoque</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="manifest" href="manifest.json">
+		<meta name="theme-color" content="#gggggg"
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Header -->
+					<header id="header" class="alt">
+						<span class="logo"><img src="images/logo.svg" alt="" /></span>
+						<h1>Estoque</h1>
+						<p>Controle de estoque dos itens<br /> </p>
+					</header>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul>
+							<li><a href="#" onclick="loadContent('adc.html')" class="active">Adicionar</a></li>
+							<!--<li><a href="#" onclick="loadContent('att.html')">Atualizar</a></li>
+							<li><a href="#" onclick="loadContent('del.html')">Deletar</a></li> -->
+							<li><a href="#" onclick="loadContent('list.html')">Listar</a></li> 
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+						<p></p>
+					</footer>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script type="module">
+				import 'https://cdn.jsdelivr.net/npm/@pwabuilder/pwaupdate';
+				const el = document.createElement('pwa-update');
+				document.body.appendChild(el);
+			</script>
+			<script>
+			function loadContent(page) {
+				var content = document.getElementById('main');
+				var xhr = new XMLHttpRequest();
+		  
+				xhr.onreadystatechange = function() {
+				  if (xhr.readyState === 4 && xhr.status === 200) {
+					content.innerHTML = xhr.responseText;
+				  }
+				};
+		  
+				xhr.open('GET', page, true);
+				xhr.send();
+			  }
+			</script>
+			<script>
+				function enviarDados() {
+				  var name = document.getElementById("nameit");
+				  var amount = document.getElementById("quantit");
+				  var brand = document.getElementById("marcait");
+				  var texto1 = name.value;
+				  var texto2 = amount.value;
+				  var texto3 = brand.value;
+			  
+				  // Crie um objeto com os dados que serão enviados para a API
+				  var data = {
+					name: texto1,
+					amount: texto2,
+					brand: texto3
+				  };
+
+				  console.log(data);
+			  
+				  // Faça uma requisição à API usando o método fetch ou XMLHttpRequest
+				  fetch("http://127.0.0.1:3000/item/add", {
+					method: "POST",
+					headers: {
+					  "Content-Type": "application/json"
+					},
+					body: JSON.stringify(data)
+				  })
+				
+				  .then(response => response.json())
+				  .then(result => {
+					// Faça algo com a resposta da API, se necessário
+					console.log("Sucesso!")
+					console.log(result);
+					document.getElementById('main').textContent = 'Dados enviados com sucesso.';
+				  })
+				  .catch(error => {
+					// Trate qualquer erro que ocorrer durante a requisição
+					console.error(error);
+				  });
+				}
+			  </script>
+			  <script>
+				function listarDados() {
+				fetch("http://127.0.0.1:3000/item/list")
+					.then(response => response.json())
+					.then(data => {
+					// Limpar o conteúdo existente do container
+					const container = document.getElementById("main");
+					container.innerHTML = "";
+		
+					// Iterar sobre os dados e criar elementos para cada item
+					data.forEach(item => {
+						const element = document.createElement("p");
+						element.textContent = item.name + ', ' + item.brand + ', ' + item.amount; 
+						container.appendChild(element);
+					});
+					})
+					.catch(error => {
+					// Trate qualquer erro que ocorrer durante a requisição
+					console.error(error);
+					});
+				}
+				</script>
+
+	</body>
+</html>

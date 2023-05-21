@@ -1,0 +1,53 @@
+{
+  "background_color": "#ffffff",
+  "description": "Controle de estoque",
+  "dir": "ltr",
+  "display": "standalone",
+  "name": "Controle de estoque",
+  "orientation": "portrait",
+  "scope": "/",
+  "short_name": "Estoque",
+  "start_url": "https://estoquecontrol.netlify.app/",
+  "theme_color": "#ffffff",
+  "categories": [
+    "productivity"
+  ],
+  "screenshots": [],
+  "icons": [{
+    "src": "assets/img/android/android-launchericon-48-48.png",
+    "sizes": "48x48",
+    "type": "image/png"
+  },
+  {
+    "src": "assets/img/android/android-launchericon-72-72.png",
+    "sizes": "72x72",
+    "type": "image/png"
+  },
+  {
+    "src": "assets/img/android/android-launchericon-96-96.png",
+    "sizes": "96x96",
+    "type": "image/png"
+  },
+  {
+    "src": "assets/img/android/android-launchericon-144-144.png",
+    "sizes": "144x144",
+    "type": "image/png",
+    "purpose": "maskable"
+  },
+  {
+    "src": "assets/img/android/android-launchericon-192-192.png",
+    "sizes": "192x192",
+    "type": "image/png",
+    "purpose": "any"
+  },
+  {
+    "src": "assets/img/android/android-launchericon-512-512.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }
+],
+  "shortcuts": [],
+  "display_override": [
+    "window-controls-overlay"
+  ]
+}
